@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberShield | Security Toolkit</title>
+<style>
+:root{--bg:#07111f;--panel:#0e1d30;--panel2:#12243a;--text:#eaf2ff;--muted:#91a6c2;--cyan:#38d9ff;--green:#52f0ad;--line:#203650;--purple:#a78bfa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#102b48 0,#07111f 50%);color:var(--text);font:15px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+header{border-bottom:1px solid var(--line);padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#07111fdd;position:sticky;top:0;backdrop-filter:blur(12px);z-index:5}
+.logo{font-size:22px;font-weight:800;letter-spacing:.4px}.logo span{color:var(--cyan)}.status{color:var(--green);font-size:13px}.status:before{content:"●";margin-right:8px}
+main{max-width:1100px;margin:auto;padding:36px 20px 60px}.hero{padding:30px 0 26px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700}.hero h1{font-size:clamp(32px,6vw,55px);line-height:1.1;margin:12px 0}.hero h1 span{color:var(--cyan)}.hero p{max-width:680px;color:var(--muted);font-size:17px}.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.chip{border:1px solid var(--line);padding:6px 11px;border-radius:30px;color:#bfd0e5;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.stat,.tool{background:linear-gradient(145deg,var(--panel),#0a1727);border:1px solid var(--line);border-radius:16px;padding:20px}.stat strong{display:block;font-size:25px;color:var(--cyan)}.stat small{color:var(--muted)}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:35px 0 15px}.section-title h2{margin:0;font-size:24px}.section-title p{margin:0;color:var(--muted);font-size:13px}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tool h3{margin:0 0 5px;font-size:19px}.tool .desc{color:var(--muted);margin:0 0 17px;font-size:13px}.icon{width:42px;height:42px;border-radius:12px;background:#16334b;color:var(--cyan);display:grid;place-items:center;font-size:21px;margin-bottom:14px}
+label{display:block;font-size:13px;color:#c4d4e8;margin:12px 0 6px}input,textarea{width:100%;background:#071321;border:1px solid #2a4562;border-radius:9px;padding:12px;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #38d9ff15}textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:9px;padding:11px 15px;background:var(--cyan);color:#03121d;font-weight:750;cursor:pointer;margin-top:12px}button:hover{filter:brightness(1.08)}button.secondary{background:#1b3048;color:var(--text);border:1px solid #2a4562}.result{margin-top:13px;padding:12px;border-radius:9px;background:#071321;border:1px solid var(--line);color:#c7d8ed;overflow-wrap:anywhere;font-size:13px;min-height:44px}.meter{height:7px;background:#20334a;border-radius:20px;margin-top:9px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--green);transition:width .25s}
+.filearea{border:1px dashed #3b5c7d;padding:17px;border-radius:10px;text-align:center;color:var(--muted);margin-top:8px}.filearea input{border:0;padding:8px;margin-top:8px}
+.note{margin-top:22px;padding:14px 17px;border-left:3px solid var(--purple);background:#171b35;color:#c8c9e7;border-radius:7px;font-size:13px}
+footer{text-align:center;border-top:1px solid var(--line);padding:25px;color:var(--muted);font-size:12px}
+@media(max-width:700px){header{padding:15px 5%}.stats{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.section-title{display:block}.section-title p{margin-top:5px}}
+</style>
+</head>
+<body>
+<header><div class="logo">◈ Cyber<span>Shield</span></div><div class="status">LOCAL SECURITY TOOLKIT</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">Cybersecurity • Beginner Project</div>
+<h1>Your digital safety,<br><span>made simple.</span></h1>
+<p>A mini security toolkit demonstrating password hygiene, cryptographic hashing and file integrity checks — right in your browser.</p>
+<div class="chips"><span class="chip">HTML + CSS + JavaScript</span><span class="chip">No installation required</span><span class="chip">Client-side demo</span></div>
+</section>
+<div class="stats">
+<div class="stat"><strong>03</strong><small>Security tools</small></div>
+<div class="stat"><strong>SHA-256</strong><small>Hash algorithm</small></div>
+<div class="stat"><strong>100%</strong><small>Browser-based demo</small></div>
+</div>
+<div class="section-title"><h2>Security Toolkit</h2><p>Choose a tool and try it</p></div>
+<section class="tools">
+<article class="tool">
+<div class="icon">⌁</div><h3>Password Strength</h3><p class="desc">Evaluate length and character variety. Never use your real password here.</p>
+<label for="password">Sample password</label><input id="password" type="password" placeholder="Try: Example@123" autocomplete="off">
+<div class="meter"><span id="meter"></span></div>
+<div class="result" id="passwordResult" aria-live="polite">Your password rating will appear here.</div>
+<button onclick="checkPassword()">Check strength</button><button class="secondary" onclick="togglePassword()">Show / hide</button>
+</article>
+<article class="tool">
+<div class="icon">#</div><h3>SHA-256 Hash Generator</h3><p class="desc">Turn text into a fixed-length cryptographic fingerprint.</p>
+<label for="hashInput">Text to hash</label><textarea id="hashInput" placeholder="Type any sample text..."></textarea>
+<button onclick="makeHash()">Generate SHA-256</button>
+<div class="result" id="hashResult" aria-live="polite">Your hash will appear here.</div>
+<button class="secondary" onclick="copyHash()">Copy hash</button>
+</article>
+<article class="tool">
+<div class="icon">▧</div><h3>File Integrity Check</h3><p class="desc">Calculate a file's hash. Calculate it again after editing to compare fingerprints.</p>
+<div class="filearea">Select a sample file<input id="fileInput" type="file"></div>
+<div class="result" id="fileResult" aria-live="polite">File name and SHA-256 will appear here.</div>
+<button class="secondary" onclick="clearFile()">Clear selection</button>
+</article>
+<article class="tool">
+<div class="icon">✓</div><h3>Security Checklist</h3><p class="desc">A few everyday steps to improve account safety.</p>
+<label><input type="checkbox" style="width:auto;margin-right:8px"> Use unique passwords</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px"> Enable multi-factor authentication</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px"> Update apps and operating system</label>
+<label><input type="checkbox" style="width:auto;margin-right:8px"> Avoid suspicious links and attachments</label>
+<div class="note">Tip: A password manager can help you create and store unique passwords.</div>
+</article>
+</section>
+<div class="note"><strong>Project note:</strong> This website is an educational demonstration. Password strength rules are simplified. A file hash only detects changes when you compare it with a trusted original hash. The site does not upload your text or files.</div>
+</main>
+<footer>CyberShield Mini Cybersecurity Project • Built for learning defensive security</footer>
+<script>
+function checkPassword(){
+ const p=document.getElementById('password').value;
+ let s=0;
+ if(p.length>=12)s+=2;else if(p.length>=8)s++;
+ if(/[a-z]/.test(p))s++;if(/[A-Z]/.test(p))s++;if(/[0-9]/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;
+ let label=s<=2?'Weak':s<=4?'Medium':'Strong';
+ let color=s<=2?'#ff6b7a':s<=4?'#ffd166':'#52f0ad';
+ document.getElementById('passwordResult').innerHTML='<strong style="color:'+color+'">'+label+'</strong> · Score '+s+'/6';
+ document.getElementById('meter').style.width=(s/6*100)+'%';document.getElementById('meter').style.background=color;
+}
+function togglePassword(){const p=document.getElementById('password');p.type=p.type==='password'?'text':'password'}
+async function makeHash(){
+ const text=document.getElementById('hashInput').value;
+ if(!text){document.getElementById('hashResult').textContent='Please enter some text first.';return}
+ const bytes=new TextEncoder().encode(text);
+ const digest=await crypto.subtle.digest('SHA-256',bytes);
+ const hash=Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+ document.getElementById('hashResult').textContent=hash;
+}
+async function copyHash(){const value=document.getElementById('hashResult').textContent;if(value.length===64){try{await navigator.clipboard.writeText(value);document.getElementById('hashResult').textContent=value+' (copied)'}catch(e){alert('Select and copy the hash manually.')}}}
+document.getElementById('fileInput').addEventListener('change',async function(){
+ const f=this.files[0];if(!f)return;
+ const bytes=await f.arrayBuffer();const digest=await crypto.subtle.digest('SHA-256',bytes);
+ const hash=Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+ document.getElementById('fileResult').innerHTML='<strong>'+f.name+'</strong><br>Size: '+f.size+' bytes<br>SHA-256: '+hash;
+});
+function clearFile(){document.getElementById('fileInput').value='';document.getElementById('fileResult').textContent='File name and SHA-256 will appear here.'}
+</script>
+</body>
+</html>
